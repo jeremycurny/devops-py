@@ -2,7 +2,7 @@
 
 import json, os, re, sys
 
-if len (sys.argv) != 2 :
+if len(sys.argv) != 2 :
   # Argv is missing
   print "Usage: python " + __file__ + " ./composer.json"
   sys.exit(1)
