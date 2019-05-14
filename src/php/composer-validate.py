@@ -1,18 +1,24 @@
 #!/usr/bin/env python
 
-import json, os, re, sys
+import argparse, json, os, re, sys
 
-if len(sys.argv) != 2 :
+parser = argparse.ArgumentParser(description='Devops Py Composer Validation.')
+parser.add_argument('argv', metavar='argv', nargs='+', help='Composer file')
+args = parser.parse_args()
+
+if len(args.argv) != 1 :
   # Argv is missing
   print "Usage: python " + __file__ + " ./composer.json"
   sys.exit(1)
 
-if not os.path.exists(sys.argv[1]):
+composerJsonPath = args.argv[0];
+
+if not os.path.exists(composerJsonPath):
   # File does not exists
-  print "File " + sys.argv[1] + " not found"
+  print "File " + composerJsonPath + " not found"
   sys.exit(1)
 
-file = open(sys.argv[1], "r")
+file = open(composerJsonPath, "r")
 composerJsonContent = file.read()
 file.close()
 
