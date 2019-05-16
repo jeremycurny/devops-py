@@ -32,7 +32,7 @@ composerRequireData = composerData.get('require', [])
 
 for package,version in composerRequireData.iteritems():
   vendor=package.split('/')[0]
-  if not re.search('^((~|\^)?[0-9]+\.[0-9]+\.[0-9]+)(\|((~|\^)?[0-9]+\.[0-9]+\.[0-9]+))*', version):
+  if not re.search('^(~|\^)?[0-9]+\.[0-9]+\.[0-9]+', version):
     print "Incorrect version for " + package + ": " + version
     sys.exit(1)
   if vendor in minorForcedVendors and not re.search('^\^', version):
