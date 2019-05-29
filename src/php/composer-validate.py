@@ -36,8 +36,8 @@ for package,version in composerRequireData.iteritems():
     print "Incorrect version for " + package + ": " + version
     sys.exit(1)
   if vendor in minorForcedVendors and not re.search('^\^', version):
-    print "Minor update syntax should be used for vendor: " + vendor + " (" + package + ": " + version + ")"
+    print "Minor update syntax (^) should be used for vendor: " + vendor + " (" + package + ": " + version + ")"
     sys.exit(1)
   if vendor in patchForcedVendors and not re.search('^~', version):
-    print "Patch update syntax should be used for vendor: " + vendor + " (" + package + ": " + version + ")"
+    print "Patch update syntax (~) should be used for vendor: " + vendor + " (" + package + ": " + version + ")"
     sys.exit(1)
