@@ -63,7 +63,7 @@ cleanData = sorted(cleanData, key=operator.itemgetter(2,3,0,1))
 
 with open(languageCsvPath, 'wb') as f:
     currentPackage = ""
-    writer = csv.writer(f)
+    writer = csv.writer(f, lineterminator='\n')
     for row in cleanData:
         rowPackage = row[2].capitalize() + " " + row[3]
         if rowPackage != currentPackage:
