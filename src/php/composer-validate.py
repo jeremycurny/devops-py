@@ -5,7 +5,6 @@ import argparse, json, os, re, sys
 parser = argparse.ArgumentParser(description='Devops Py Composer Validation.')
 parser.add_argument('--patch-forced-vendors', default=[], help='Vendors forced to have a patch update package version (~)')
 parser.add_argument('--minor-forced-vendors', default=[], help='Vendors forced to have a minor update package version (^)')
-parser.add_argument('argv', metavar='argv', nargs='+', help='Composer file')
 args = parser.parse_args()
 
 composerJsonPath = 'composer.json'
