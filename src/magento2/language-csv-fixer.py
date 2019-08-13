@@ -40,14 +40,36 @@ cleanData = []
 with open(languageCsvPath) as f:
     rawData = csv.reader(f, delimiter=',')
     for rawRow in rawData:
-        if len(rawRow) < 4:
+        if len(rawRow) == 0:
+            # Empty line
             continue;
+        if rawRow[0][:1] == "#":
+            # Commented line
+            continue;
+        if len(rawRow) < 4:
+            # Wtf is this
+            print "Incorrect line: \"" + ','.join(rawRow) + "\""
+            print "At least 4 columns are expected"
+            sys.exit(1)
+        if (rawRow[2] not in ["module", "theme"]):
+            # 3rd column incorrect
+            print "Incorrect line: \"" + ','.join(rawRow) + "\""
+            print "3rd column has to be module or theme, current value: " + rawRow[2]
+            sys.exit(1)
         cleanData.append(rawRow)
     f.close()
 
 cleanData = sorted(cleanData, key=operator.itemgetter(2,3,0,1))
 
 with open(languageCsvPath, 'wb') as f:
+    currentPackage = ""
     writer = csv.writer(f)
-    writer.writerows(cleanData)
+    for row in cleanData:
+        rowPackage = row[2].capitalize() + " " + row[3]
+        if rowPackage != currentPackage:
+            if currentPackage != "":
+                writer.writerow([])
+            currentPackage = rowPackage
+            writer.writerow(["## " + currentPackage + " ##"])
+        writer.writerow(row)
     f.close()
