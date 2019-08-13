@@ -54,7 +54,7 @@ with open(languageCsvPath) as f:
         if (rawRow[2] not in ["module", "theme"]):
             # 3rd column incorrect
             print "Incorrect line: \"" + ','.join(rawRow) + "\""
-            print "3rd column has to be module or theme, current value: " + rawRow[2]
+            print "3rd column has to be \"module\" or \"theme\", current value: " + rawRow[2]
             sys.exit(1)
         cleanData.append(rawRow)
     f.close()
