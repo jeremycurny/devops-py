@@ -8,7 +8,7 @@ parser.add_argument('--minor-forced-vendors', default=[], help='Vendors forced t
 parser.add_argument('argv', metavar='argv', nargs='+', help='Composer file')
 args = parser.parse_args()
 
-composerJsonPath = args.argv[0]
+composerJsonPath = 'composer.json'
 minorForcedVendors = args.minor_forced_vendors
 patchForcedVendors = args.patch_forced_vendors
 
