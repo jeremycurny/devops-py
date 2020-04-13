@@ -30,6 +30,8 @@ composerData = json.loads(composerJsonContent)
 composerRequireData = composerData.get('require', [])
 
 for package,version in composerRequireData.iteritems():
+  if re.search('^ext-', package):
+    continue
   vendor=package.split('/')[0]
   if not re.search('^(~|\^)?[0-9]+\.[0-9]+\.[0-9]+', version):
     print "Incorrect version for " + package + ": " + version
